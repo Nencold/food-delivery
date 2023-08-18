@@ -1,0 +1,36 @@
+.slider-content{
+    max-width: 100%;
+    
+}
+
+.slider-content{
+    padding: 20px;
+}
+.slider{
+max-width: 95%;
+margin: 0px auto;
+overflow: hidden;
+}
+.slider-line{
+    display: flex;
+    transition: all ease 1s;
+}
+
+.arrow{
+    cursor: pointer;
+    color: white;
+}
+
+.arrow:hover{
+    color: #FF7020;
+}
+
+.arrow:active{
+    color: #f3925b;
+}
+
+@media(max-width:376px){
+    .slider-content{
+        padding: 25px;
+    }
+} 

@@ -1,0 +1,16 @@
+.body{
+    display: flex;
+    padding: 0px 32px;
+}
+
+@media(max-width:940px){
+    .body{
+        flex-direction: column;
+    }
+}
+
+@media(max-width:376px){
+    .body{
+        padding: 0px 10px;
+    }
+}
