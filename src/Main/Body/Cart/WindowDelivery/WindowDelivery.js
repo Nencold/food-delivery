@@ -28,7 +28,11 @@ function WindowDelivery (props) {
 
     const closeHandler = e => {
         props.props('')
+        document.body.style.overflow = "visible";
     }
+
+
+
     return(
         <div className={`window-delivery ${windowClass}`}>
             <div className="window-delivery__row">

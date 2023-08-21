@@ -5,11 +5,10 @@ import { selectCart } from "../../../store/cartSlice";
 import './ProductList.css';
 import { increment } from "../../../store/cartSlice";
 import WindowGoods from "./WindowGoods/WindowGoods";
-import { current } from "@reduxjs/toolkit";
 
 function ProductList (props){
     const productListRef = useRef();
-    const [windowClass, setWindowClass] = useState();
+    const [windowClass, setWindowClass] = useState('');
     const [dataKey, setDataKey] = useState();
     const goods = useSelector(selectGoods);
     const cart = useSelector(selectCart);
@@ -56,6 +55,7 @@ function ProductList (props){
         let el = e.currentTarget.getAttribute('data-articul');
         setGoodsItem(goodsObj[el])
         f1('active')
+        document.body.style.overflow = "hidden";
     }
     
 

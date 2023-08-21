@@ -56,6 +56,7 @@ function Cart (props){
             return true
         }
         props.props('active')
+        document.body.style.overflow = "hidden";
     } 
 
     useEffect(()=>{

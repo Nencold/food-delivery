@@ -23,6 +23,7 @@ function WindowGoods (props) {
     const closeHandler = () => {
         console.log()
         props.f1('')
+        document.body.style.overflow = "visible";
     }
 
     const incrementHandler = () => {
@@ -42,6 +43,7 @@ function WindowGoods (props) {
             dispatch(increment(el.getAttribute('data-articul')));
         }
         props.f1('')
+        document.body.style.overflow = "visible";
     }
 
     

@@ -136,6 +136,10 @@ label{
 
 
 @media(max-width:600px){
+    .window-delivery__row{
+        margin-top: 10px;
+    }
+
     .window-delivery__column-img{
         display: none;
     }
@@ -147,7 +151,7 @@ label{
 
 }
 
-@media(max-width:376px){
+@media(max-width:415px){
     .window-delivery__row{
         border-radius: 0;
         box-shadow: 1px;
