@@ -13,9 +13,9 @@
     background: #FFFFFF;
     padding: 12px;
     margin-bottom: 30px;
+    box-shadow: 0px 0px 10px rgb(221, 220, 220);
 }
 .goods-item:hover{
-    box-shadow: 0px 0px 10px rgb(221, 220, 220);
     border: 1px solid white;
 }
 .goods-item:active{
@@ -69,6 +69,12 @@
 .btn2.active{
     background: #FFAB08;
     color: white;
+}
+.btn2.active:hover{
+    background: #F86310;
+}
+.btn2.active:active{
+    background: #FFAB08;
 }
 
 

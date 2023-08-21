@@ -77,7 +77,7 @@ function WindowGoods (props) {
                     <button onClick={incrementHandler}>+</button>
                 </div>
                 <div className="window-item__price">
-                    <p>{`${props.price * count}грн`}</p>   
+                    <p>{`${props.price * count}₽`}</p>   
                 </div>
             </div>
         </div> 

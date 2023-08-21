@@ -1,17 +1,34 @@
 import React, { useEffect, useRef, useState } from "react";
 import {useSelector, useDispatch} from 'react-redux';
 import {selectGoods} from '../../../store/goodsSlice'; 
+import { selectCart } from "../../../store/cartSlice";
 import './ProductList.css';
 import { increment } from "../../../store/cartSlice";
 import WindowGoods from "./WindowGoods/WindowGoods";
+import { current } from "@reduxjs/toolkit";
 
 function ProductList (props){
+    const productListRef = useRef();
     const [windowClass, setWindowClass] = useState();
     const [dataKey, setDataKey] = useState();
     const goods = useSelector(selectGoods);
+    const cart = useSelector(selectCart);
     const dispatch = useDispatch();
-    const btnRef = useRef();
-    
+    const [cartItem, setCartItem] = useState({});
+
+    useEffect(()=>{
+        setCartItem(cart)
+        let list = productListRef.current.childNodes;
+        
+        for(let i = 0; i < list.length; i++){
+            list[i].childNodes[4].classList.remove('active')
+            Object.keys(cartItem).map(item => {
+                if(list[i].getAttribute('data-articul') === item){
+                    list[i].childNodes[4].classList.add('active')
+                }
+            })
+        }
+        })
     
     const goodsObj = goods.reduce((accum, item) => {
         accum[item['articul']] = item;
@@ -39,7 +56,6 @@ function ProductList (props){
         let el = e.currentTarget.getAttribute('data-articul');
         setGoodsItem(goodsObj[el])
         f1('active')
-        console.log(btnRef.current)
     }
     
 
@@ -59,9 +75,7 @@ function ProductList (props){
         f1={f1}
         />
         <h1>{dataKey}</h1>
-        
-            <div className="product-list">
-            
+            <div className="product-list" ref={productListRef}>
                 {goods.map((item, id) => {
                     if(item.id === dataKey){
                         return ( 

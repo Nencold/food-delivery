@@ -13,28 +13,53 @@ function Cart (props){
     const nothingRef = useRef();
     const dispatch = useDispatch();
     const [btnInactive, setBtnInactive] = useState()
+    const [counter, setCounter] = useState(0);
     //переиндексирую массив товара
     const goodsObj = goods.reduce((accum, item) => {
         accum[item['articul']] = item;
         return accum;
     }, {});
 
-    const getCount = () => {
+    useEffect(()=>{
         let count = Object.keys(cart).reduce((accum,item) => 
         accum += cart[item]
         , 0)
-        return count;
-    }
+        setCounter(count)
+    })
+
+    useEffect(()=>{
+        if(counter === 0){
+            nothingRef.current.classList.remove('active')
+        }
+        if(!body.current.classList.contains('active') && !nothingRef.current.classList.contains('active')){
+            cartRef.current.classList.remove('active')
+        } 
+    })
+
+    const activeToggleClass = () => {
+        if(counter === 0){
+            nothingRef.current.classList.toggle('active')
+            body.current.classList.remove('active')
+        }else{
+            nothingRef.current.classList.remove('active')
+            body.current.classList.toggle('active')
+        }
+        if(nothingRef.current.classList.contains('active') || body.current.classList.contains('active')){
+            cartRef.current.classList.add('active')
+        } else {
+            cartRef.current.classList.remove('active')
+        }
+    };
 
     const btnWindowActive = () => {
-        if(getCount() === 0){
+        if(counter === 0){
             return true
         }
         props.props('active')
     } 
 
     useEffect(()=>{
-        if(getCount() === 0) setBtnInactive('inactive')
+        if(counter === 0) setBtnInactive('inactive')
         else setBtnInactive('')
     })
 
@@ -62,20 +87,7 @@ function Cart (props){
     }
 
     
-    const activeToggleClass = () => {
-        
-        if(getCount() === 0){
-            nothingRef.current.classList.toggle('active')
-        }else{
-            nothingRef.current.classList.remove('active')
-            body.current.classList.toggle('active')
-        }
-        if(nothingRef.current.classList.contains('active') || body.current.classList.contains('active')){
-            cartRef.current.classList.add('active')
-        } else {
-            cartRef.current.classList.remove('active')
-        }
-    };
+
     
     return(
         <div className="cart" ref={cartRef}>
@@ -84,7 +96,7 @@ function Cart (props){
                     <h2>Корзина</h2>
                 </div>
                 <div className="cart-title__counter">
-                    <p>{getCount()}</p>
+                    <p>{counter}</p>
                 </div>
             </div>
             <div className="cart-nothing" ref={nothingRef}>

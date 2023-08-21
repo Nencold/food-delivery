@@ -2,7 +2,7 @@
     flex: 0 0 300px;
     border-radius: 18px;
     background-color: #FFFFFF;
-    box-shadow: 0px 0px 10px #00000007;
+    box-shadow: 0px 0px 10px rgb(221, 220, 220);
     position: relative;
     margin: 50px 30px 0px 0px;
     height: 100%;
@@ -159,6 +159,7 @@
 .btn1.inactive{
     background: #F9F9F9;
     color: #ACACAC;
+    cursor: auto;
 }
 .btn1.inactive{
     background: #F9F9F9;

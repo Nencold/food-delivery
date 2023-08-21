@@ -11,7 +11,7 @@ function Header(){
         <div className="Header">
             <div className="container">
                 <div className="header-logo">
-                    <a href="" onClick={f1}><img src="images/headerlogo.svg" alt="logo" /></a>
+                    <a href="#" onClick={f1}><img src="images/headerlogo.svg" alt="logo" /></a>
                 </div>
                 <div className="header-body">
                     <Slider/>
