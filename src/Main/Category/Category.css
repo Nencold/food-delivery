@@ -29,7 +29,8 @@
     max-height: 40px;
     flex-shrink: 0;
     cursor: pointer; 
-
+    border: 1px solid #fff;
+    transition: all 0.15s ease-in-out;
 }
 
 
@@ -41,12 +42,16 @@
 }
 
 .category-btn:hover{
+    transform: translateY(-1px);
     border: 1px solid #F86310;
 }
 
 .category-btn.active{
+    transform: translateY(0px);
+    border: 1px solid #fff;
     background-color: #FFAB08;
-    border:none;
+    color: #fff;
+    
 }
 
 @media(max-width:376px){

@@ -73,7 +73,7 @@ export default function Slider(){
     
     return(
         <div className="slider-content">
-            
+            <FaChevronLeft className="arrow" onClick={handleLeftClick}/>
                 <div className="slider" ref={sliderRef}>
                     <div className="slider-line" ref={sliderLineRef} style={{width: width * sliderImages.length + 'px', transform:`translateX(${offset}px)`}}>
                         {sliderImages.map((item, id) => {
@@ -90,7 +90,7 @@ export default function Slider(){
                         })}
                     </div>
                 </div>
-                <FaChevronLeft className="arrow" onClick={handleLeftClick}/>
+                
             <FaChevronRight className="arrow" onClick={handleRightClick}/>
         </div>
     );

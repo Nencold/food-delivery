@@ -2,9 +2,10 @@ import React, { useEffect, useRef, useState } from "react";
 import {useSelector, useDispatch} from 'react-redux';
 import {selectGoods} from '../../../store/goodsSlice'; 
 import { selectCart } from "../../../store/cartSlice";
-import './ProductList.css';
 import { increment } from "../../../store/cartSlice";
 import WindowGoods from "./WindowGoods/WindowGoods";
+
+import './ProductList.css';
 
 function ProductList (props){
     const productListRef = useRef();
@@ -14,6 +15,7 @@ function ProductList (props){
     const cart = useSelector(selectCart);
     const dispatch = useDispatch();
     const [cartItem, setCartItem] = useState({});
+    
 
     useEffect(()=>{
         setCartItem(cart)

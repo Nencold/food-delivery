@@ -2,34 +2,47 @@
     position: fixed;
     background: rgba(0,0,0,0.8);
     z-index: 1000;
-    left: 0px;
-    top: 0px;
-    bottom: 0px;
-    right: 0px;
-    display: none;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
     justify-content: center;
     overflow-y: auto ;
+    transition: all 0.5s ease-in-out;
+    opacity: 0;
+}
+
+.window-delivery__row{
+    width:684px;
+    height: 432px;
+    background: #F9F9F9;
+    border-radius: 24px;
+    box-shadow: 0px 0px 15px 0px #0000001A;
+    display: flex;
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform:translate(-50%, -30%);
+    transition: all 0.5s ease-in-out;
+    opacity: 0;
+}
+
+.window-delivery.active {
+    visibility:visible;
+    opacity: 1;
     
+}
+
+.window-delivery.active > .window-delivery__row{
+    transform:translate(-50%, -50%);
+    opacity: 1;
 }
 
 .form-btn{
     flex: 1 1 auto;
     display: flex;
     align-items: flex-end;
-}
-
-.window-delivery.active{
-    display: flex;
-}
-
-.window-delivery__row{
-    flex: 0 1 684px;
-    background: #F9F9F9;
-    border-radius: 24px;
-    box-shadow: 0px 0px 15px 0px #0000001A;
-    height: 432px;
-    margin: 1%;
-    display: flex;
 }
 
 
@@ -135,9 +148,22 @@ label{
 }
 
 
-@media(max-width:600px){
+@media(max-width:768px){
     .window-delivery__row{
         margin-top: 10px;
+        height: 0%;
+        width: 100%;
+        border-radius: 0%;
+        margin: 0px;
+        left: 0;
+        top: 0;
+        transform: translate(0%, 0%);
+        
+    }
+
+    .window-delivery.active > .window-delivery__row{
+        height: 100%; 
+        transform:translate(0%, 0%);
     }
 
     .window-delivery__column-img{
@@ -148,15 +174,17 @@ label{
         flex: 1 1 auto;
         padding: 24px;
     }
+    form {
+        height: 100%;
+    }
 
 }
 
 @media(max-width:415px){
     .window-delivery__row{
-        border-radius: 0;
         box-shadow: 1px;
         height: 100%;
-        margin: 0px;
+        
     }
     .window-delivery__column-form{
         border-radius: 0;
