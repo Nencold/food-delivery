@@ -8,11 +8,7 @@ import { increment, decrement, selectCart } from '../../../store/cartSlice';
 function Cart (props){
     const goods = useSelector(selectGoods);
     const cart = useSelector(selectCart);
-    const body = useRef();
-    const cartRef = useRef();
-    const nothingRef = useRef();
     const dispatch = useDispatch();
-    const [btnInactive, setBtnInactive] = useState()
     const [counter, setCounter] = useState(0);
     //переиндексирую массив товара
     const goodsObj = goods.reduce((accum, item) => {
@@ -27,42 +23,15 @@ function Cart (props){
         setCounter(count)
     })
 
-    useEffect(()=>{
-        if(counter === 0){
-            nothingRef.current.classList.remove('active')
-        }
-        if(!body.current.classList.contains('active') && !nothingRef.current.classList.contains('active')){
-            cartRef.current.classList.remove('active')
-        } 
-    })
-
-    const activeToggleClass = () => {
-        if(counter === 0){
-            nothingRef.current.classList.toggle('active')
-            body.current.classList.remove('active')
-        }else{
-            nothingRef.current.classList.remove('active')
-            body.current.classList.toggle('active')
-        }
-        if(nothingRef.current.classList.contains('active') || body.current.classList.contains('active')){
-            cartRef.current.classList.add('active')
-        } else {
-            cartRef.current.classList.remove('active')
-        }
-    };
 
     const btnWindowActive = () => {
         if(counter === 0){
-            return true
+            return true;
         }
-        props.props('active')
+        props.props('active');
         document.body.style.overflow = "hidden";
     } 
 
-    useEffect(()=>{
-        if(counter === 0) setBtnInactive('inactive')
-        else setBtnInactive('')
-    })
 
     const getSum = () => {
         let sum = Object.keys(cart).reduce((accum,item) => 
@@ -74,8 +43,8 @@ function Cart (props){
 
     const getDelivery = () => {
         let delivery = 'Стоимость доставки 199₽';
-        if(getSum() >= 599 ) delivery = 'Бесплатная доставка'
-        return delivery
+        if(getSum() >= 599 ) delivery = 'Бесплатная доставка';
+        return delivery;
     }
 
     const incrementHandler = e => {
@@ -88,11 +57,12 @@ function Cart (props){
     }
 
     
+    const [cartActive, setCartActive] = useState(false);
 
     
     return(
-        <div className="cart" ref={cartRef}>
-            <div className="cart-title" onClick={activeToggleClass}>
+        <div className={`cart ${cartActive ? 'active': ''}`}>
+            <div className="cart-title" onClick={() => cartActive ? setCartActive(false): setCartActive(true)}>
                 <div className="cart-title__name">
                     <h2>Корзина</h2>
                 </div>
@@ -100,10 +70,10 @@ function Cart (props){
                     <p>{counter}</p>
                 </div>
             </div>
-            <div className="cart-nothing" ref={nothingRef}>
+            <div className={`cart-nothing ${cartActive && counter === 0? 'active': ''}`}>
                 <p>Тут пока пусто...</p>
             </div>
-            <div className="cart__body" ref={body}>
+            <div className={`cart__body ${cartActive && counter > 0? 'active': ''}`}>
                 {Object.keys(cart).map(item => { 
                         return (
                             <div className="cart-item" key={item + goodsObj.title}>
@@ -134,9 +104,9 @@ function Cart (props){
                         <p>Итого</p>
                         <p>{getSum() + '₽'}</p>
                     </div>
-                    <button className={`btn1 ${btnInactive}`} onClick={btnWindowActive}>Оформить заказ</button>
+                    <button className={`btn1`} onClick={btnWindowActive}>Оформить заказ</button>
                     <div className="cart-title__delivery">
-                        <img src="images/icons/Доставка.svg" alt="" /><p>{getDelivery()}</p>
+                        <img src="images/icons/Доставка.svg" alt="delivery" /><p>{getDelivery()}</p>
                     </div>
                 </div>
             </div>
